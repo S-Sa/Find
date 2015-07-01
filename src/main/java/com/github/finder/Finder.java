@@ -64,7 +64,9 @@ public class Finder {
                             return true;
                         }
                     }
-                }
+                }catch (java.io.IOException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
