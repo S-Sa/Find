@@ -3,6 +3,10 @@ package com.github.finder;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.*;
+import java.lang.*;
 
 public class Finder {
     private Args args;
@@ -18,28 +22,6 @@ public class Finder {
 
         return list.toArray(new String[list.size()]);
     }
-
-    private boolean isTarget(File file){
-        return true;
-    }
-
-    private boolean isTarget(File file){
-        boolean flag = true;
-        if(args.getName() != null){
-            flag &= checkTargetName(file, args.getName());
-        }
-        return flag;
-    }
-private boolean isTarget(File file){
-        boolean flag = true;
-        if(args.getName() != null){
-            flag &= checkTargetName(file, args.getName());
-        }
-        if(args.getType() != null){
-            flag &= checkTargetType(file, args.getType());
-        }
-        return flag;
-    }
     
     private boolean checkTargetType(File file, String type){
         type = type.toLowerCase();
@@ -53,21 +35,6 @@ private boolean isTarget(File file){
             return file.isHidden();
         }
         return false;
-    }
-
-    private boolean isTarget(File file){
-        boolean flag = true;
-        if(args.getName() != null){
-            flag &= checkTargetName(file, args.getName());
-        }
-        if(args.getType() != null){
-            flag &= checkTargetType(file, args.getType());
-        }
-        if(args.getSize() != null){
-            flag &= checkTargetSize(file, args.getSize());
-        }
-        
-        return flag;
     }
 
     private boolean isTarget(File file){
@@ -97,7 +64,9 @@ private boolean isTarget(File file){
                             return true;
                         }
                     }
-                }
+                }catch (java.io.IOException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
