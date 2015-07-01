@@ -2,7 +2,7 @@ package com.github.finder;
 
 public class Main{
     public Main(String[] arguments){
-        Args args = parseArguments(arguments);
+        parseArguments(arguments);
     }
 
     public static void main(String[] args){
