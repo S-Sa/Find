@@ -19,28 +19,6 @@ public class Finder {
 
         return list.toArray(new String[list.size()]);
     }
-
-    private boolean isTarget(File file){
-        return true;
-    }
-
-    private boolean isTarget(File file){
-        boolean flag = true;
-        if(args.getName() != null){
-            flag &= checkTargetName(file, args.getName());
-        }
-        return flag;
-    }
-private boolean isTarget(File file){
-        boolean flag = true;
-        if(args.getName() != null){
-            flag &= checkTargetName(file, args.getName());
-        }
-        if(args.getType() != null){
-            flag &= checkTargetType(file, args.getType());
-        }
-        return flag;
-    }
     
     private boolean checkTargetType(File file, String type){
         type = type.toLowerCase();
@@ -54,21 +32,6 @@ private boolean isTarget(File file){
             return file.isHidden();
         }
         return false;
-    }
-
-    private boolean isTarget(File file){
-        boolean flag = true;
-        if(args.getName() != null){
-            flag &= checkTargetName(file, args.getName());
-        }
-        if(args.getType() != null){
-            flag &= checkTargetType(file, args.getType());
-        }
-        if(args.getSize() != null){
-            flag &= checkTargetSize(file, args.getSize());
-        }
-        
-        return flag;
     }
 
     private boolean isTarget(File file){
