@@ -70,6 +70,38 @@ private boolean isTarget(File file){
         return flag;
     }
 
+    private boolean isTarget(File file){
+        boolean flag = true;
+        if(args.getName() != null){
+            flag &= checkTargetName(file, args.getName());
+        }
+        if(args.getType() != null){
+            flag &= checkTargetType(file, args.getType());
+        }
+        if(args.getSize() != null){
+            flag &= checkTargetSize(file, args.getSize());
+        }
+        if(args.getGrep() != null){
+            flag &= checkGrep(file, args.getGrep());
+        }
+
+        return flag;
+    }
+
+    private boolean checkGrep(File file, String pattern){
+        if(file.isFile()){
+            try(BufferedReader in = new BufferedReader(new FileReader(file))){
+                    String line;
+                    while((line = in.readLine()) != null){
+                        if(line.indexOf(pattern) >= 0){
+                            return true;
+                        }
+                    }
+                }
+        }
+        return false;
+    }
+
     private boolean checkTargetSize(File file, String sizeString){
         if(file.isFile()){
             char sign = sizeString.charAt(0);
